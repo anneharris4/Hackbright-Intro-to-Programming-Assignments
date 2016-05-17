@@ -1,18 +1,24 @@
 total_bill = 0.0
 tip = 0.0
+number_of_salads = 0
+number_of_burgers = 0
+number_of_drinks = 0
 bill_before_tip = 0.0
-people_number = 1.0
+people_number = 1
 bill_per_person= 0.0
 
 def prompt_user(): 
-	global total_bill
 	global tip
-	global bill_before_tip
+	global number_of_salads
+	global number_of_burgers
+	global number_of_drinks
 	global people_number
-	bill_before_tip = float(raw_input('how much is on the bill not including tip?'))
+	number_of_salads = int(raw_input('how many salads did you order?'))
+	number_of_burgers=int(raw_input('how many burgers did you order?'))
+	number_of_drinks=int(raw_input('how many drinks did you order?'))
 	dine_alone = raw_input('did you dine alone? y/n') 
 	if dine_alone == 'no':
-			people_number = float(raw_input('how many people were at dinner?'))
+			people_number = int(raw_input('how many people were at dinner?'))
 	else:
 		 people_number = 1.0
 	tip_percentage = raw_input('is 18% tip ok?')
@@ -24,8 +30,12 @@ def prompt_user():
 def calculate_bill():
 	global bill_before_tip
 	global tip
+	global number_of_salads
+	global number_of_burgers
+	global number_of_drinks
 	global bill_per_person
 	global total_bill
+	bill_before_tip = (number_of_salads * 4.0) + (number_of_burgers * 5) + (number_of_drinks *2)
 	total_bill = bill_before_tip + (tip * bill_before_tip)
 	bill_per_person = total_bill/people_number
 
